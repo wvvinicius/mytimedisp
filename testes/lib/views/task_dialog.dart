@@ -14,6 +14,8 @@ class TaskDialog extends StatefulWidget {
 class _TaskDialogState extends State<TaskDialog> {
   final _titleController = TextEditingController();
   final _descriptionController = TextEditingController();
+  final _tempController = TextEditingController();
+  final _timeController = TextEditingController();
 
   Task _currentTask = Task();
 
@@ -27,6 +29,8 @@ class _TaskDialogState extends State<TaskDialog> {
 
     _titleController.text = _currentTask.title;
     _descriptionController.text = _currentTask.description;
+    _tempController.text = _currentTask.tempoprevisto;
+    _timeController.text = _currentTask.tempototal;
   }
 
   @override
@@ -34,24 +38,40 @@ class _TaskDialogState extends State<TaskDialog> {
     super.dispose();
     _titleController.clear();
     _descriptionController.clear();
+    _tempController.clear();
+    _timeController.clear();
   }
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(widget.task == null ? 'Nova tarefa' : 'Editar tarefas'),
-      content: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          TextField(
-              controller: _titleController,
-              decoration: InputDecoration(labelText: 'Título'),
-              autofocus: true),
-          TextField(
+      content: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            TextField(
+                controller: _titleController,
+                decoration: InputDecoration(labelText: 'Título'),
+                autofocus: true),
+            TextField(
               controller: _descriptionController,
-              decoration: InputDecoration(labelText: 'Descrição')),
-        ],
+              decoration: InputDecoration(labelText: 'Descrição'),
+            ),
+            TextField(
+              controller: _tempController,
+              decoration:
+                  InputDecoration(labelText: 'Tempo necessario em minutos'),
+              keyboardType: TextInputType.datetime,
+            ),
+            TextField(
+              controller: _timeController,
+              decoration: InputDecoration(labelText: 'Tempo total em minutos'),
+              keyboardType: TextInputType.datetime,
+            ),
+          ],
+        ),
       ),
       actions: <Widget>[
         FlatButton(
@@ -65,7 +85,8 @@ class _TaskDialogState extends State<TaskDialog> {
           onPressed: () {
             _currentTask.title = _titleController.value.text;
             _currentTask.description = _descriptionController.text;
-
+            _currentTask.tempoprevisto = _tempController.text;
+            _currentTask.tempototal = _timeController.text;
             Navigator.of(context).pop(_currentTask);
           },
         ),

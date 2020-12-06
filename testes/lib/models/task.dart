@@ -2,12 +2,16 @@ class Task {
   int id;
   String title;
   String description;
+  String tempoprevisto;
+  String tempototal;
   bool isDone;
 
   Task({
     this.id,
     this.title,
     this.description,
+    this.tempoprevisto,
+    this.tempototal,
     this.isDone = false,
   });
 
@@ -15,6 +19,8 @@ class Task {
         id: json["id"],
         title: json["title"],
         description: json["description"],
+        tempoprevisto: json["tempoprevisto"],
+        tempototal: json["tempototal"],
         isDone: json["isDone"] == 1,
       );
 
@@ -23,6 +29,8 @@ class Task {
       "id": id,
       "title": title,
       "description": description,
+      "tempoprevisto": tempoprevisto,
+      "tempototal": tempototal,
       "isDone": isDone ? 1 : 0
     };
 

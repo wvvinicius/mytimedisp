@@ -32,6 +32,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(title: Text('Lista de Tarefas')),
       floatingActionButton:
           FloatingActionButton(child: Icon(Icons.add), onPressed: _addNewTask),
+      backgroundColor: Colors.blueGrey[900],
       body: _buildTaskList(),
     );
   }
@@ -53,8 +54,16 @@ class _HomePageState extends State<HomePage> {
     final task = _taskList[index];
     return CheckboxListTile(
       value: task.isDone,
-      title: Text(task.title),
-      subtitle: Text(task.description),
+      title: Text('Título: ' + task.title,
+          style: TextStyle(
+              fontSize: 23,
+              color: Colors.blueGrey[100],
+              fontWeight: FontWeight.w400)),
+      subtitle: Text('Descrição: ' + task.description,
+          style: TextStyle(
+              fontSize: 18,
+              color: Colors.blueGrey[100],
+              fontWeight: FontWeight.w400)),
       onChanged: (bool isChecked) {
         setState(() {
           task.isDone = isChecked;
@@ -73,7 +82,7 @@ class _HomePageState extends State<HomePage> {
       actions: <Widget>[
         IconSlideAction(
           caption: 'Editar',
-          color: Colors.blue,
+          color: Colors.blueGrey[100],
           icon: Icons.edit,
           onTap: () {
             _addNewTask(editedTask: _taskList[index], index: index);
@@ -81,7 +90,7 @@ class _HomePageState extends State<HomePage> {
         ),
         IconSlideAction(
           caption: 'Excluir',
-          color: Colors.red,
+          color: Colors.blueGrey[100],
           icon: Icons.delete,
           onTap: () {
             _deleteTask(deletedTask: _taskList[index], index: index);

@@ -30,6 +30,8 @@ class TaskHelper {
           "id INTEGER PRIMARY KEY, "
           "title TEXT, "
           "description TEXT, "
+          "tempoprevisto TEXT,"
+          "tempototal TEXT,"
           "isDone INTEGER)");
     });
   }
@@ -54,7 +56,14 @@ class TaskHelper {
   Future<Task> getById(int id) async {
     Database database = await db;
     List<Map> maps = await database.query('task',
-        columns: ['id', 'title', 'description', 'isDone'],
+        columns: [
+          'id',
+          'title',
+          'description',
+          'tempoprevisto',
+          'tempototal',
+          'isDone'
+        ],
         where: 'id = ?',
         whereArgs: [id]);
 

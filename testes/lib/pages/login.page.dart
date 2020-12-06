@@ -10,7 +10,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.deepPurple,
+      backgroundColor: Colors.blueGrey[900],
       body: Padding(
         padding: EdgeInsets.all(20),
         child: Center(
@@ -18,23 +18,28 @@ class _LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              TextFormField(
-                autofocus: true,
-                keyboardType: TextInputType.emailAddress,
-                style: new TextStyle(color: Colors.white, fontSize: 20),
-                decoration: InputDecoration(
-                    labelText: "Email",
-                    labelStyle: TextStyle(color: Colors.white)),
-              ),
-              Divider(),
-              TextFormField(
-                autofocus: true,
-                obscureText: true,
-                keyboardType: TextInputType.text,
-                style: new TextStyle(color: Colors.white, fontSize: 20),
-                decoration: InputDecoration(
-                    labelText: "Senha",
-                    labelStyle: TextStyle(color: Colors.white)),
+              Positioned(
+                  width: MediaQuery.of(context).size.width,
+                  top: MediaQuery.of(context).size.width * 0.30,
+                  child: Container(
+                    margin: EdgeInsets.all(16.0),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Image.asset('assets/logo2.png'),
+                          SizedBox(
+                            height: 20,
+                          ),
+                        ]),
+                  )),
+              Text(
+                'Bem-Vindo',
+                style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.blueGrey[300],
+                    fontFamily: 'Open Sans',
+                    fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
               ),
               Divider(),
               ButtonTheme(
@@ -45,10 +50,15 @@ class _LoginPageState extends State<LoginPage> {
                           MaterialPageRoute(builder: (context) => HomePage()));
                     },
                     child: Text(
-                      "Entrar",
-                      style: TextStyle(color: Colors.deepPurple),
+                      "Continuar",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontFamily: 'Open Sans',
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                    color: Colors.white,
+                    color: Colors.blueGrey[300],
                   )),
             ],
           ),
