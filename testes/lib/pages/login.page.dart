@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:testes/views/home_page.dart';
+//import 'package:testes/views/home_page.dart';
+import 'package:testes/pages/dash.page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -47,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: RaisedButton(
                     onPressed: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => HomePage()));
+                          MaterialPageRoute(builder: (context) => Dash()));
                     },
                     child: Text(
                       "Continuar",
